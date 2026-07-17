@@ -1,0 +1,223 @@
+---
+import { platforms } from "../data/site";
+---
+
+<section class="about" id="about">
+  <div class="about__grid container">
+    <div class="about__copy">
+      <p class="eyebrow reveal">Who We Are</p>
+      <h2 class="section-heading reveal reveal-delay-1">
+        Luxury Interior<br />Transformation Studio
+      </h2>
+      <hr class="divider reveal reveal-delay-2" />
+      <p class="section-lead reveal reveal-delay-2">
+        SHIFTED INTERIORS is a luxury interior transformation studio creating
+        visually captivating spaces through cinematic storytelling. Our content
+        transforms ordinary interiors into extraordinary environments that inspire
+        millions of viewers across multiple platforms.
+      </p>
+      <p class="about__body reveal reveal-delay-3">
+        We collaborate with premium home, interior, and lifestyle brands,
+        integrating products naturally into aspirational room transformations —
+        letting audiences discover products through engaging visual experiences
+        rather than traditional advertising.
+      </p>
+      <div class="about__metrics reveal reveal-delay-4">
+        <div class="about__metric">
+          <span class="about__metric-value">105M+</span>
+          <span class="about__metric-label">Monthly Views</span>
+        </div>
+        <div class="about__metric">
+          <span class="about__metric-value">5</span>
+          <span class="about__metric-label">Social Platforms</span>
+        </div>
+        <div class="about__metric">
+          <span class="about__metric-value">Luxury</span>
+          <span class="about__metric-label">Home &amp; Interior Niche</span>
+        </div>
+      </div>
+    </div>
+
+    <figure class="about__visual reveal reveal-delay-2">
+      <img
+        src="/images/about-living-room.jpg"
+        alt="Luxury living room interior transformation"
+        width="700"
+        height="900"
+        loading="lazy"
+      />
+    </figure>
+  </div>
+</section>
+
+<section class="performance" id="performance">
+  <div class="performance__inner container">
+    <div class="performance__header">
+      <p class="eyebrow reveal">Platform Performance</p>
+      <h2 class="section-heading reveal reveal-delay-1">
+        <span class="performance__hero-stat">105M+</span>
+        <span class="performance__hero-label">Monthly Views</span>
+      </h2>
+      <hr class="divider reveal reveal-delay-2" />
+      <p class="section-lead reveal reveal-delay-2">
+        Delivering premium luxury interior transformation content to millions of
+        viewers every month through highly engaging visual storytelling.
+      </p>
+    </div>
+
+    <div class="performance__grid">
+      {
+        platforms.map((p, i) => (
+          <article class={`performance__card reveal reveal-delay-${Math.min(i + 1, 4)}`}>
+            <span class="performance__platform">{p.name}</span>
+            <span class="performance__value">{p.value}</span>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    padding: var(--section-y) 0;
+    background: var(--white);
+  }
+
+  .about__grid {
+    display: grid;
+    gap: clamp(3rem, 8vw, 6rem);
+    align-items: center;
+  }
+
+  .about__copy {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .about__body {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    max-width: 34rem;
+  }
+
+  .about__metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    margin-top: 0.5rem;
+  }
+
+  .about__metric-value {
+    display: block;
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .about__metric-label {
+    display: block;
+    margin-top: 0.35rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .about__visual {
+    margin: 0;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: #f4f4f4;
+  }
+
+  .about__visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .performance {
+    padding: var(--section-y) 0;
+    background: #fafafa;
+    border-top: 1px solid var(--border);
+  }
+
+  .performance__inner {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(3rem, 6vw, 4.5rem);
+  }
+
+  .performance__header {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 40rem;
+  }
+
+  .performance__hero-stat {
+    display: block;
+    font-size: clamp(3.5rem, 10vw, 6.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+  }
+
+  .performance__hero-label {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--text-secondary);
+  }
+
+  .performance__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .performance__card {
+    background: var(--white);
+    padding: clamp(1.75rem, 4vw, 2.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .performance__platform {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .performance__value {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  @media (min-width: 768px) {
+    .about__grid {
+      grid-template-columns: 1fr 0.85fr;
+    }
+
+    .performance__grid {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+</style>

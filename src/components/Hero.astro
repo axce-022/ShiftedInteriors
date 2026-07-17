@@ -1,0 +1,241 @@
+---
+import { site } from "../data/site";
+---
+
+<section class="hero" id="top">
+  <!-- Background plate: image + grey luxury grade only -->
+  <div class="hero__media" aria-hidden="true">
+    <img
+      class="hero__image"
+      src="/images/hero.png"
+      alt=""
+      width="1024"
+      height="571"
+      fetchpriority="high"
+    />
+    <div class="hero__shimmer"></div>
+    <div class="hero__dust">
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <div class="hero__gradient"></div>
+  </div>
+
+  <!-- Foreground: text & buttons — never under the grey grade -->
+  <div class="hero__content container">
+    <p class="hero__eyebrow reveal">Luxury Interior Transformation Studio</p>
+    <h1 class="hero__title reveal reveal-delay-1">{site.name}</h1>
+    <hr class="divider divider--wide hero__divider reveal reveal-delay-2" />
+    <p class="hero__tagline reveal reveal-delay-3">{site.tagline.toUpperCase()}</p>
+
+    <div class="hero__actions reveal reveal-delay-4">
+      <a href={site.portfolioUrl} class="btn btn--primary" download>
+        Download Partnership Portfolio
+      </a>
+      <a href="#contact" class="btn btn--secondary">Let's Work Together</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    color: #ffffff;
+    overflow: hidden;
+    background: #0a0a0c;
+  }
+
+  /* Image plate — grey gradient lives only here */
+  .hero__media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    transform: scale(1.06);
+    animation: hero-drift 28s var(--ease) infinite alternate;
+  }
+
+  /*
+    Luxury grey / charcoal grade — image only
+    Soft vignette + top/bottom depth (Apple / Porsche style)
+  */
+  .hero__gradient {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+    background:
+      /* edge vignette */
+      radial-gradient(
+        ellipse 85% 70% at 50% 45%,
+        transparent 0%,
+        transparent 42%,
+        rgba(17, 17, 17, 0.28) 72%,
+        rgba(10, 10, 12, 0.55) 100%
+      ),
+      /* top → mid → bottom charcoal wash */
+      linear-gradient(
+        to bottom,
+        rgba(10, 10, 12, 0.58) 0%,
+        rgba(10, 10, 12, 0.32) 28%,
+        rgba(10, 10, 12, 0.18) 48%,
+        rgba(10, 10, 12, 0.36) 72%,
+        rgba(10, 10, 12, 0.62) 100%
+      );
+  }
+
+  .hero__shimmer {
+    position: absolute;
+    inset: -20%;
+    z-index: 2;
+    background: linear-gradient(
+      115deg,
+      transparent 38%,
+      rgba(255, 255, 255, 0.05) 48%,
+      rgba(255, 255, 255, 0.07) 52%,
+      transparent 62%
+    );
+    transform: translateX(-40%);
+    animation: shimmer-sweep 14s var(--ease) infinite;
+    pointer-events: none;
+    mix-blend-mode: soft-light;
+  }
+
+  .hero__dust {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .hero__dust span {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.65);
+    box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.2);
+    opacity: 0;
+    animation: dust-float 11s ease-in-out infinite;
+  }
+
+  .hero__dust span:nth-child(1) { left: 18%; top: 62%; animation-delay: 0s; }
+  .hero__dust span:nth-child(2) { left: 32%; top: 48%; animation-delay: 1.4s; }
+  .hero__dust span:nth-child(3) { left: 48%; top: 70%; animation-delay: 2.8s; }
+  .hero__dust span:nth-child(4) { left: 62%; top: 42%; animation-delay: 0.9s; }
+  .hero__dust span:nth-child(5) { left: 74%; top: 55%; animation-delay: 3.6s; }
+  .hero__dust span:nth-child(6) { left: 28%; top: 78%; animation-delay: 5s; }
+  .hero__dust span:nth-child(7) { left: 55%; top: 58%; animation-delay: 6.2s; }
+  .hero__dust span:nth-child(8) { left: 82%; top: 38%; animation-delay: 4.1s; }
+
+  /* Text + buttons sit above the graded image */
+  .hero__content {
+    position: relative;
+    z-index: 20;
+    text-align: center;
+    padding: 7rem 0 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .hero__eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  .hero__title {
+    font-size: clamp(2.5rem, 7vw, 4.75rem);
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    line-height: 1.05;
+    color: #ffffff;
+  }
+
+  .hero__divider {
+    width: min(14rem, 48vw);
+    height: 2px;
+    border: none;
+    background: linear-gradient(90deg, #6a5cff 0%, #ff6a88 100%);
+  }
+
+  .hero__tagline {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.42em;
+    color: rgba(255, 255, 255, 0.82);
+    margin-top: 0.25rem;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .hero__actions .btn--primary {
+    background: #ffffff;
+    color: #111111;
+  }
+
+  .hero__actions .btn--secondary {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+
+  @keyframes hero-drift {
+    from { transform: scale(1.06) translate3d(0, 0, 0); }
+    to { transform: scale(1.12) translate3d(-1.2%, -0.8%, 0); }
+  }
+
+  @keyframes shimmer-sweep {
+    0% { transform: translateX(-45%); opacity: 0; }
+    12% { opacity: 1; }
+    45% { opacity: 0.8; }
+    70% { transform: translateX(45%); opacity: 0; }
+    100% { transform: translateX(45%); opacity: 0; }
+  }
+
+  @keyframes dust-float {
+    0% { opacity: 0; transform: translateY(12px) scale(0.6); }
+    20% { opacity: 0.75; }
+    70% { opacity: 0.4; }
+    100% { opacity: 0; transform: translateY(-48px) scale(1); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__image,
+    .hero__shimmer,
+    .hero__dust span {
+      animation: none;
+    }
+
+    .hero__image {
+      transform: scale(1.04);
+    }
+
+    .hero__shimmer,
+    .hero__dust {
+      display: none;
+    }
+  }
+</style>
